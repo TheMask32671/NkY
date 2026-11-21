@@ -24,7 +24,20 @@ jobs:
           java-version: '17'
 
       - name: Preparar o Android SDK
-        uses: android-actions/setup-android@v3
+        run: |
+          SDK="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}}"
+          echo "SDK em: $SDK" | tee -a build-log.txt
+          echo "sdk.dir=$SDK" > local.properties
+          ls "$SDK/platforms" 2>/dev/null | tee -a build-log.txt || true
+          ls "$SDK/build-tools" 2>/dev/null | tee -a build-log.txt || true
+          SDKMGR=$(ls "$SDK"/cmdline-tools/*/bin/sdkmanager 2>/dev/null | head -1)
+          if [ -n "$SDKMGR" ]; then
+            yes | "$SDKMGR" --licenses > /dev/null 2>&1 || true
+            if [ ! -d "$SDK/platforms/android-35" ]; then
+              "$SDKMGR" "platforms;android-35" "build-tools;35.0.0" 2>&1 | tail -5 | tee -a build-log.txt || true
+            fi
+          fi
+          echo "ANDROID_HOME=$SDK" >> "$GITHUB_ENV"
 
       - name: Testar os calculos
         id: testes
