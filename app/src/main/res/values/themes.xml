@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Ariane" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/vinho</item>
+        <item name="android:navigationBarColor">@color/branco_rosado</item>
+        <item name="android:windowBackground">@color/branco_rosado</item>
+    </style>
+</resources>

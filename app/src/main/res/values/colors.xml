@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="vinho">#FF7B2C43</color>
+    <color name="vinho_escuro">#FF5C1F31</color>
+    <color name="rosa">#FFF3D7DF</color>
+    <color name="rosa_claro">#FFFDF4F7</color>
+    <color name="branco_rosado">#FFFFF9FB</color>
+    <color name="dourado">#FFC9A227</color>
+</resources>
